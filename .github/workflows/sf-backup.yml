@@ -26,7 +26,7 @@ jobs:
       - name: Verify SF CLI
         run: sf --version
     
-       - name: Debug - list files
+      - name: Debug - list files
         run: |
           pwd
           ls -la
