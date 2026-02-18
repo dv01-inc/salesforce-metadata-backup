@@ -1,44 +1,46 @@
-name: Daily Salesforce Backup
+name: Daily Salesforce Prod Metadata Backup
 
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: "0 7 * * *"   # 2:00 AM New York (EST). For EDT use 0 6 * * * (GitHub cron is UTC)
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - uses: salesforcecli/action-install@v1
+      - name: Setup SF CLI
+        uses: patrykacc/sf-cli-setup@v1
 
-      - name: Authenticate
+      - name: Verify SF CLI
+        run: sf --version
+
+      - name: Authenticate to Prod (JWT)
         run: |
           echo "${{ secrets.SF_JWT_KEY }}" > server.key
           sf org login jwt \
-            --client-id ${{ secrets.SF_CLIENT_ID }} \
+            --client-id "${{ secrets.SF_CLIENT_ID }}" \
             --jwt-key-file server.key \
-            --username ${{ secrets.SF_USERNAME }} \
+            --username "${{ secrets.SF_USERNAME }}" \
             --alias prod \
-            --instance-url https://login.salesforce.com
+            --instance-url https://dv01.my.salesforce.com/
 
-      - name: Retrieve
+      - name: Retrieve metadata
         run: |
-          sf project retrieve start --manifest manifest/package.xml --target-org prod
+          sf project retrieve start \
+            --manifest manifest/package.xml \
+            --target-org prod
 
-      - name: Commit
+      - name: Commit and push if changed
         run: |
-          git config user.name "SF Backup Bot"
-          git config user.email "backup@company.com"
+          git config user.name "SF Metadata Backup Bot"
+          git config user.email "tim@dv01.co"
           git add .
-          git commit -m "Daily backup $(date)" || echo "No changes"
+          git commit -m "Daily Prod metadata backup $(date -u +'%Y-%m-%d')" || echo "No changes to commit"
           git push
-
-
-sf org login jwt \
-  --client-id 3MVG9Xl3BC6VHB.aef.dK6km3V52f.jwdL_sCNz5olVvcwTi5k7FTmjPX0ImsDHE1ya8QAIKPhq23VvHwLdv3  \
-  --jwt-key-file server.key \
-  --username tim@dv01.co \
-  --alias prod \
-  --instance-url https://dv01.my.salesforce.com/
