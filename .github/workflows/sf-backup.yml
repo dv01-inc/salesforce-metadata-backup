@@ -2,7 +2,7 @@ name: Daily Salesforce Prod Metadata Backup
 
 on:
   schedule:
-    - cron: "0 7 * * *"   # 2:00 AM New York (EST). For EDT use 0 6 * * *
+    - cron: "0 7 * * *" # 2:00 AM New York (EST). For EDT use 0 6 * * *
   workflow_dispatch:
 
 permissions:
@@ -15,7 +15,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: "20"
 
