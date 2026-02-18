@@ -13,10 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-      - name: Setup SF CLI
-        uses: patrykacc/sf-cli-setup@v1
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli
 
       - name: Verify SF CLI
         run: sf --version
