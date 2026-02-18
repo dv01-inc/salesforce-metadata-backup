@@ -1,0 +1,44 @@
+name: Daily Salesforce Backup
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: salesforcecli/action-install@v1
+
+      - name: Authenticate
+        run: |
+          echo "${{ secrets.SF_JWT_KEY }}" > server.key
+          sf org login jwt \
+            --client-id ${{ secrets.SF_CLIENT_ID }} \
+            --jwt-key-file server.key \
+            --username ${{ secrets.SF_USERNAME }} \
+            --alias prod \
+            --instance-url https://login.salesforce.com
+
+      - name: Retrieve
+        run: |
+          sf project retrieve start --manifest manifest/package.xml --target-org prod
+
+      - name: Commit
+        run: |
+          git config user.name "SF Backup Bot"
+          git config user.email "backup@company.com"
+          git add .
+          git commit -m "Daily backup $(date)" || echo "No changes"
+          git push
+
+
+sf org login jwt \
+  --client-id 3MVG9Xl3BC6VHB.aef.dK6km3V52f.jwdL_sCNz5olVvcwTi5k7FTmjPX0ImsDHE1ya8QAIKPhq23VvHwLdv3  \
+  --jwt-key-file server.key \
+  --username tim@dv01.co \
+  --alias prod \
+  --instance-url https://dv01.my.salesforce.com/
