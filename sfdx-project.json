@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "salesforce-metadata-backup",
+  "namespace": "",
+  "sfdcLoginUrl": "https://dv01.my.salesforce.com",
+  "sourceApiVersion": "60.0"
+}
