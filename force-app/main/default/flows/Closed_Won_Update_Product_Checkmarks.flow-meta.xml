@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Sends a message to FollowtheMoney</description>
+        <name>ClosedWon</name>
+        <label>ClosedWon</label>
+        <locationX>710</locationX>
+        <locationY>276</locationY>
+        <actionName>slackPostMessage</actionName>
+        <actionType>slackPostMessage</actionType>
+        <connector>
+            <targetReference>Is_New_Logo</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>slackAppIdForToken</name>
+            <value>
+                <stringValue>A03269G3DNE</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackWorkspaceIdForToken</name>
+            <value>
+                <stringValue>T02P020SL</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackConversationId</name>
+            <value>
+                <stringValue>C04GPT3E10D</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackMessage</name>
+            <value>
+                <elementReference>SlackWonMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <stringValue>$Record.Name</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>slackPostMessage</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Sends a message to FollowtheMoney</description>
+        <name>Copy_2_of_ClosedWon</name>
+        <label>New Logo ClosedWon</label>
+        <locationX>578</locationX>
+        <locationY>492</locationY>
+        <actionName>slackPostMessage</actionName>
+        <actionType>slackPostMessage</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>slackAppIdForToken</name>
+            <value>
+                <stringValue>A03269G3DNE</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackWorkspaceIdForToken</name>
+            <value>
+                <stringValue>T02P020SL</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackConversationId</name>
+            <value>
+                <stringValue>C04GPT3E10D</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>slackMessage</name>
+            <value>
+                <elementReference>SlackCcMonica</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <stringValue>$Record.Name</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>slackPostMessage</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>New_Opportunity_Created</name>
+        <label>New Opportunity Created Notification</label>
+        <locationX>50</locationX>
+        <locationY>1224</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <connector>
+            <targetReference>UpdateProductCheckmarks</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>GetCustomNotification.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>RecipientIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <elementReference>GetCustomNotification.Description</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>Notification</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>Clone_Opps</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <assignments>
+        <name>AssignProductCheckMarks</name>
+        <label>Assign Product Check Marks</label>
+        <locationX>138</locationX>
+        <locationY>924</locationY>
+        <assignmentItems>
+            <assignToReference>checkmark_MS</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkMS</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_TC</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkTC</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_DS</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkDS</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_CF</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkCF</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_VA</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkVA</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_PS</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkPS</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_PC</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkPC</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_ESG</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkESG</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_DD</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>setCheckmarkDD</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>checkmark_LDA</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>checkmark_LDA</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignProductCount</name>
+        <label>AssignProductCount</label>
+        <locationX>182</locationX>
+        <locationY>384</locationY>
+        <assignmentItems>
+            <assignToReference>ProductCount</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>GetOpportunityLineItems</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RecipientIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.LastModifiedBy.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decision_2</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>SlackChannel</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>CB73X6E1G</stringValue>
+        </value>
+    </constants>
+    <decisions>
+        <name>Decision_2</name>
+        <label>More Than One Products</label>
+        <locationX>182</locationX>
+        <locationY>492</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Decision_2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ProductCount</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Clone_Opps</targetReference>
+            </connector>
+            <label>More One Products</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_New_Logo</name>
+        <label>Is New Logo</label>
+        <locationX>710</locationX>
+        <locationY>384</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>isNewLogo</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Business_new logo</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_2_of_ClosedWon</targetReference>
+            </connector>
+            <label>isNewLogo</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>newOppName</name>
+        <dataType>String</dataType>
+        <expression>{!OppNameCompanyName}
+&amp; 
+IF(
+        CONTAINS({!OppNameLatterPart}, &quot;LDA&quot;),
+        SUBSTITUTE( 
+             SUBSTITUTE({!OppNameLatterPart}, &quot;,LDA&quot;, &quot;&quot;),
+             &quot;LDA,&quot;, &quot;&quot;
+        ),
+    {!OppNameLatterPart}
+)
+&amp; &quot; - &quot;
+&amp; CASE(
+    MONTH({!$Record.Contract_End_Date__c}),
+    1, &quot;Jan&quot;,
+    2, &quot;Feb&quot;,
+    3, &quot;Mar&quot;,
+    4, &quot;Apr&quot;,
+    5, &quot;May&quot;,
+    6, &quot;Jun&quot;,
+    7, &quot;Jul&quot;,
+    8, &quot;Aug&quot;,
+    9, &quot;Sep&quot;,
+    10, &quot;Oct&quot;,
+    11, &quot;Nov&quot;,
+    12, &quot;Dec&quot;,
+    &quot;Error&quot;
+)
+&amp; &quot; &quot;
+&amp; TEXT(YEAR({!$Record.Contract_End_Date__c}))
+&amp; &quot; Renewal&quot;</expression>
+    </formulas>
+    <formulas>
+        <description>Start Date + 1 Year - 1 Day</description>
+        <name>OneYearEndsAt</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!PriorContractEndDatePlusOne}, 12) - 1</expression>
+    </formulas>
+    <formulas>
+        <name>OppNameCompanyName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    CONTAINS({!$Record.Name}, &quot;|&quot;),
+    LEFT(
+        {!$Record.Name},
+        FIND(&quot;|&quot;, {!$Record.Name})
+    ),
+    {!$Record.Name}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>OppNameLatterPart</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(
+    IF(
+        CONTAINS({!$Record.Name}, &quot;|&quot;),
+        IF(
+            CONTAINS(
+                MID(
+                    {!$Record.Name},
+                    FIND(&quot;|&quot;, {!$Record.Name}) + 1,
+                    LEN({!$Record.Name})
+                ),
+                &quot;-&quot;
+            ),
+            TRIM(
+                LEFT(
+                    MID(
+                        {!$Record.Name},
+                        FIND(&quot;|&quot;, {!$Record.Name}) + 1,
+                        LEN({!$Record.Name})
+                    ),
+                    FIND(
+                        &quot;-&quot;,
+                        MID(
+                            {!$Record.Name},
+                            FIND(&quot;|&quot;, {!$Record.Name}) + 1,
+                            LEN({!$Record.Name})
+                        )
+                    ) - 1
+                )
+            ),
+            TRIM(
+                MID(
+                    {!$Record.Name},
+                    FIND(&quot;|&quot;, {!$Record.Name}) + 1,
+                    LEN({!$Record.Name})
+                )
+            )
+        ),
+        &quot;&quot;
+    ),
+    &quot; &quot;,
+    &quot;&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>PriorContractEndDatePlusOne</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Contract_End_Date__c} + 1</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkCF</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_CF} || (
+  (
+    ({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOOIAZ&quot;) || 
+    ({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOWIAZ&quot;) || 
+    ({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOPIAZ&quot;) || 
+    ({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOpIAJ&quot;)
+  ) &amp;&amp; 
+  {!Loop_1.UnitPrice} &gt; 0
+)</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkDD</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_DD} || (({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOMIAZ&quot;) &amp;&amp; {!Loop_1.UnitPrice} &gt; 0)</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkDS</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_DS} || (({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tPm00000982aXIAQ&quot;) &amp;&amp; {!Loop_1.UnitPrice} &gt; 0)</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkESG</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_ESG} || (({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jONIAZ&quot;) &amp;&amp; {!Loop_1.UnitPrice} &gt; 0)</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkLDA</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_LDA} || (({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOUIAZ&quot;) &amp;&amp; {!Loop_1.UnitPrice} &gt; 0)</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkMS</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_MS} || (( {!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOHIAZ&quot;) &amp;&amp; {!Loop_1.UnitPrice} &gt; 0)</expression>
+    </formulas>
+    <formulas>
+        <description>Private Credit?</description>
+        <name>setCheckmarkPC</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_PC} || (({!Loop_1.PricebookEntry.Product2.Id} = &quot;xxx&quot;) &amp;&amp; {!Loop_1.UnitPrice} &gt; 0)</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkPS</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_PS} || (
+  (
+    ({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOSIAZ&quot;) || 
+    ({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jOTIAZ&quot;)
+  ) &amp;&amp; 
+  {!Loop_1.UnitPrice} &gt; 0
+)</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkTC</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_TC} || (({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tHp00000C9jORIAZ&quot;) &amp;&amp; {!Loop_1.UnitPrice} &gt; 0)</expression>
+    </formulas>
+    <formulas>
+        <name>setCheckmarkVA</name>
+        <dataType>Boolean</dataType>
+        <expression>{!checkmark_VA} || (({!Loop_1.PricebookEntry.Product2.Id} = &quot;01tPm00000982VhIAI&quot;) &amp;&amp; {!Loop_1.UnitPrice} &gt; 0)</expression>
+    </formulas>
+    <formulas>
+        <name>TodayDate</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <interviewLabel>Closed Won -&gt; Update Product Checkmarks {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Closed Won -&gt; Update Product Checkmarks</label>
+    <loops>
+        <name>Loop_1</name>
+        <label>Source Opportunity Line Items</label>
+        <locationX>50</locationX>
+        <locationY>708</locationY>
+        <collectionReference>GetOpportunityLineItems</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>new_Product_Lines</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>GetCustomNotification</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Clone_Opps</name>
+        <label>Clone Opportunity</label>
+        <locationX>50</locationX>
+        <locationY>600</locationY>
+        <connector>
+            <targetReference>Loop_1</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>$Record.Contract_End_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contract_End_Date__c</field>
+            <value>
+                <elementReference>OneYearEndsAt</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contract_Start_Date__c</field>
+            <value>
+                <elementReference>PriorContractEndDatePlusOne</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ForecastCategoryName</field>
+            <value>
+                <stringValue>Pipeline</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>newOppName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue>012Hp0000013zwxIAA</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Renewal: Diagnose &amp; Engage</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Existing Business_renewal</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>new_Product_Lines</name>
+        <label>new Product Line Items</label>
+        <locationX>138</locationX>
+        <locationY>816</locationY>
+        <connector>
+            <targetReference>AssignProductCheckMarks</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Billing_Start_Date__c</field>
+            <value>
+                <elementReference>PriorContractEndDatePlusOne</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OpportunityId</field>
+            <value>
+                <elementReference>Clone_Opps</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PricebookEntryId</field>
+            <value>
+                <elementReference>Loop_1.PricebookEntryId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Prior_Price__c</field>
+            <value>
+                <elementReference>Loop_1.UnitPrice</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Quantity</field>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ServiceDate</field>
+            <value>
+                <elementReference>TodayDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>UnitPrice</field>
+            <value>
+                <elementReference>Loop_1.UnitPrice</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OpportunityLineItem</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>GetCustomNotification</name>
+        <label>GetCustomNotification</label>
+        <locationX>50</locationX>
+        <locationY>1116</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>New_Opportunity_Created</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>New_Oppority_Created_Auto</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Excluded LDA</description>
+        <name>GetOpportunityLineItems</name>
+        <label>Get Opportunity Line Items</label>
+        <locationX>182</locationX>
+        <locationY>276</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>AssignProductCount</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OpportunityId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Product2Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>01tHp00000C9jOUIAZ</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>OpportunityLineItem</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>UpdateProductCheckmarks</name>
+        <label>Update Product Checkmarks</label>
+        <locationX>50</locationX>
+        <locationY>1332</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Credit_Facilities__c</field>
+            <value>
+                <elementReference>checkmark_CF</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Data_Direct__c</field>
+            <value>
+                <elementReference>checkmark_DD</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>DealStudio__c</field>
+            <value>
+                <elementReference>checkmark_DS</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ESG_Reporting__c</field>
+            <value>
+                <elementReference>checkmark_ESG</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LDA__c</field>
+            <value>
+                <elementReference>checkmark_LDA</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Market_Surveillance__c</field>
+            <value>
+                <elementReference>checkmark_MS</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Portfolio_Surveillance__c</field>
+            <value>
+                <elementReference>checkmark_PS</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Private_Credit__c</field>
+            <value>
+                <elementReference>checkmark_PC</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Tape_Cracker__c</field>
+            <value>
+                <elementReference>checkmark_TC</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Verification_Agent__c</field>
+            <value>
+                <elementReference>checkmark_VA</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>GetOpportunityLineItems</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>1</filterLogic>
+        <filters>
+            <field>StageName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed Won</stringValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference>ClosedWon</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+    <textTemplates>
+        <name>Notification</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!newOppName} Created</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SlackCcMonica</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>cc. @monica</text>
+    </textTemplates>
+    <textTemplates>
+        <name>SlackWonMessage</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Woohoo! {!$Record.Owner.FirstName} closed {!$Record.Type} {!$Record.Name} with a annual revenue of {!$Record.Amount}!</text>
+    </textTemplates>
+    <variables>
+        <description>Credit Facilities</description>
+        <name>checkmark_CF</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Data Direct</description>
+        <name>checkmark_DD</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>DealStudio</description>
+        <name>checkmark_DS</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>checkmark_ESG</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Loan Data Agent</description>
+        <name>checkmark_LDA</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Market Surveillance</description>
+        <name>checkmark_MS</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Private Credit</description>
+        <name>checkmark_PC</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Portfolio Surveillance</description>
+        <name>checkmark_PS</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Tape Cracker</description>
+        <name>checkmark_TC</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Verification Agent</description>
+        <name>checkmark_VA</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>LineItemCollections</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>OpportunityLineItem</objectType>
+    </variables>
+    <variables>
+        <description>Count of Product Lines</description>
+        <name>ProductCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>RecipientId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <elementReference>$Record.LastModifiedBy.Id</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <description>recipient IDs</description>
+        <name>RecipientIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

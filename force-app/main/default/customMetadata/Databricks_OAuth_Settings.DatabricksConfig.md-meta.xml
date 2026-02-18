@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>DatabricksConfig</label>
+    <protected>false</protected>
+    <values>
+        <field>Access_Token__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Client_Id__c</field>
+        <value xsi:type="xsd:string">fc3dd691-b405-4930-a525-1df03478cc67</value>
+    </values>
+    <values>
+        <field>Client_Secret__c</field>
+        <value xsi:type="xsd:string">dose497629bec248b89b08314c1af3d880f8</value>
+    </values>
+    <values>
+        <field>Token_Expires_At__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Token_Url__c</field>
+        <value xsi:type="xsd:string">https://1671591340373218.8.gcp.databricks.com/oidc/v1/token</value>
+    </values>
+</CustomMetadata>

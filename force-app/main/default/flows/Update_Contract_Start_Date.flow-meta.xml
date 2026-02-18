@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <description>Update contract start date if null with Close Date + 1
+Update product billing start date as Contract Start Date</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Contract Start Date + 1 Year - 1 Day</description>
+        <name>ContractEndDate</name>
+        <dataType>Date</dataType>
+        <expression>DATE(
+    YEAR({!$Record.Contract_Start_Date__c}) + 1,
+    MONTH({!$Record.Contract_Start_Date__c}),
+     DAY({!$Record.Contract_Start_Date__c})
+) - 1</expression>
+    </formulas>
+    <formulas>
+        <name>OppCloseDatePlus1</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.CloseDate} + 1</expression>
+    </formulas>
+    <interviewLabel>Update Contract Start Date {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Contract Start Date</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update fixed price product billing start date</description>
+        <name>Update</name>
+        <label>Update Product Billing Start Date</label>
+        <locationX>176</locationX>
+        <locationY>539</locationY>
+        <filterLogic>(1 OR 2 OR 3) AND 4</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Data Direct</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Market Surveillance</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Tape Cracker</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Billing_Start_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Billing_Start_Date__c</field>
+            <value>
+                <elementReference>$Record.Contract_Start_Date__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record.OpportunityLineItems</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Updated Contract End Date to Contract Start Date + 1 Year - 1 Day</description>
+        <name>Update_Contract_End_Date</name>
+        <label>Update Contract End Date</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Update</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contract_End_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Contract_End_Date__c</field>
+            <value>
+                <elementReference>ContractEndDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>updated contract start date based on close date</description>
+        <name>Update_Contract_Start_Date</name>
+        <label>Update Contract Start Date</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <connector>
+            <targetReference>Update_Contract_End_Date</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contract_Start_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Contract_Start_Date__c</field>
+            <value>
+                <elementReference>OppCloseDatePlus1</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Contract_Start_Date</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contract_Start_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>
