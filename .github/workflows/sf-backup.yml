@@ -34,11 +34,3 @@ jobs:
           git add .
           git commit -m "Daily backup $(date)" || echo "No changes"
           git push
-
-
-sf org login jwt \
-  --client-id 3MVG9Xl3BC6VHB.aef.dK6km3V52f.jwdL_sCNz5olVvcwTi5k7FTmjPX0ImsDHE1ya8QAIKPhq23VvHwLdv3  \
-  --jwt-key-file server.key \
-  --username tim@dv01.co \
-  --alias prod \
-  --instance-url https://dv01.my.salesforce.com/
